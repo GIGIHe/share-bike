@@ -1,0 +1,61 @@
+.header-wraper{
+    background-color: #fff;
+    height: 80px;
+    .top-wrap{
+        border-bottom: 1px solid #d3af39;
+        .top{
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 27px;
+            height: 45px;
+            line-height: 45px;
+            .name{
+                color: #d3af39;
+                margin: 0 15px 0 5px;   
+        }
+    }
+}
+
+.bottom{
+    box-sizing: border-box;
+    padding-right: 26px;
+    display: flex;
+     line-height: 34px;
+    justify-content: space-between;
+    .breadcrumb{
+     width: 40px;
+     line-height: 34px;
+      margin-left: 60px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      a{
+          text-decoration: none;
+      }
+      a:active{
+          color:#666;
+      }
+}
+.breadcrumb{
+    &::after{
+    content: '';
+    border: 12px solid transparent;
+    border-top-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 34px;
+    transform: translateX(-50%);
+    }
+}
+.t-wea {
+    .wea{
+    font-weight: 700;
+    margin-left: 10px;
+}
+.city{
+    margin-left: 10px;
+}
+}
+}
+}
