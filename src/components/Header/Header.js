@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import {  Breadcrumb,Icon} from "antd";
 import './Header.less'
-import {formatDate,axios} from '../../utils/index'
+import {formatDate} from '../../utils/index'
+import axios from '../../Axios'
 class Header extends Component{
     state = {
         time:'',
