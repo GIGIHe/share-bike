@@ -4,43 +4,35 @@ import {  Breadcrumb,Icon} from "antd";
 import './Header.less'
 import {formatDate} from '../../utils/index'
 import axios from '../../Axios'
-class Header extends Component{
+class Header extends Component {
     state = {
-        time:'',
-        weather:'',
-        city:''
+        time: '',
+        weather: '',
+        city: ''
     }
-    getTime=()=>{
-        setInterval(()=>{
+    getTime = () => {
+        setInterval(() => {
             let unixDate = new Date().getTime();
             let timeStr = formatDate(unixDate);
             this.setState({
                 time: timeStr
             })
-        },1000)
+        }, 1000)
     }
-    // aqi: 34
-    // date: "10日星期三"
-    // fl: "<3级"
-    // fx: "东北风"
-    // high: "高温 17.0℃"
-    // low: "低温 4.0℃"
-    // notice: "阴晴之间，谨防紫外线侵扰"
-    // sunrise: "06:18"
-    // sunset: "17:44"
-    // type: "多云"
-    getWeather=()=>{
-       axios.get(`http://t.weather.sojson.com/api/weather/city/101010100`).then(res=>{
-           let newWeather = res.data.forecast[0]
-           this.setState({
-               weather: `${newWeather.low}~${newWeather.high} \t ${newWeather.fx} ${newWeather.fl}`,
-               city:`${res.cityInfo.city}`
-           })
-       })
+
+    getWeather = () => {
+        axios.get(`http://t.weather.sojson.com/api/weather/city/101010100`).then(res => {
+            let newWeather = res.data.forecast[0]
+            this.setState({
+                weather: `${newWeather.low}~${newWeather.high} \t ${newWeather.fx} ${newWeather.fl}`,
+                city: `${res.cityInfo.city}`
+            })
+        })
     }
-    componentWillMount(){
+    componentWillMount() {
         this.getTime();
         this.getWeather();
+        console.log(this.props)
     }
 
     handleJump = () => {
@@ -58,7 +50,7 @@ class Header extends Component{
                 </div>
                 <div className="bottom">
                    <Breadcrumb  className="breadcrumb">
-                        < Breadcrumb.Item className = "item" key="home"><Link to='/admin/home' replace>首页</Link></Breadcrumb.Item>
+                        < Breadcrumb.Item className = "item" key="home">首页</Breadcrumb.Item>
                    </Breadcrumb>
                     <div className="t-wea">
                     <span className="time">{this.state.time}</span>

@@ -31,8 +31,15 @@ class Sider extends Component {
         </span>}>
           <Menu.Item key="3">
             <span>
-              <Link to="/admin/echarts" replace>
+              <Link to="/admin/echarts/bar" replace>
                 条形图
+                </Link>
+            </span>
+          </Menu.Item>
+            <Menu.Item key="4">
+            <span>
+              <Link to="/admin/echarts/pie" replace>
+                饼状图
                 </Link>
             </span>
           </Menu.Item>

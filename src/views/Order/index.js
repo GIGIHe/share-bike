@@ -81,7 +81,9 @@ class Order extends Component {
           endMsg: res.result
         });
       });
-      this.setState({ visible: true });
+      this.setState({
+        visible: true
+      });
     } else {
       Message.info("请选择一条数据");
     }
@@ -110,14 +112,14 @@ class Order extends Component {
       .catch(err => Message.info(err));
   };
   //查看详情,定义成表达式和函数声明是不一样
-  handleDetail=()=>{
+  handleDetail = () => {
     // console.log(this.state.selectedIndex);
-    if (this.state.selectedItem){
+    if (this.state.selectedItem) {
       let id = this.state.selectedItem[0].id;
       console.log(id)
-      window.open(`/#/order/${id}`, "_blank");
-    }else{
-       Message.info('请选择一条数据')
+      window.open(`/#/orderDetail/${id}`, "_blank");
+    } else {
+      Message.info('请选择一条数据')
     }
   }
   // 生命周期函数
@@ -125,58 +127,122 @@ class Order extends Component {
     this.getOrder();
   };
   render() {
-    // 城市列表数据
-    const cityData = [
-      { value: 0, label: "北京" },
-      { value: 1, label: "广州" },
-      { value: 2, label: "上海" },
-      { value: 3, label: "郑州" }
-    ];
-    // 订单状态信息
-    const orderStatus = [
-      { value: 0, status: "全部" },
-      { value: 1, status: "正在进行" },
-      { value: 2, status: "结束" }
-    ];
-    // table列，信息
-    const columns = [
-      { title: "订单编号", dataIndex: "order_sn", key: "order_sn" },
-      { title: "车辆编号", dataIndex: "bike_sn", key: "bike_sn" },
-      { title: "用户名", dataIndex: "user_name", key: "user_name" },
-      { title: "手机号", dataIndex: "mobile", key: "mobile" },
-      { title: "里程", dataIndex: "distance", key: "distance" },
-      { title: "行驶时长", dataIndex: "total_time", key: "total_time" },
-      { title: "状态", dataIndex: "status", key: "status" },
-      { title: "开始时间", dataIndex: "start_time", key: "start_time" },
-      { title: "结束时间", dataIndex: "end_time", key: "end_time" },
-      { title: "订单金额", dataIndex: "total_fee", key: "total_fee" },
-      { title: "实付金额", dataIndex: "user_pay", key: "user_pay" }
-    ];
-    // 表单元素的双向数据绑定
-    const { getFieldDecorator } = this.props.form;
-    //分页器
-    const pagination = {
-      total: this.state.total,
-      size: this.state.size,
-      onChange: index => {
-        this.setState({
-          pn: index
-        });
-        this.getOrder();
-      }
-    };
-    //操作每行的table数据
-    const rowSelection = {
-      type: "radio",
-      onChange: (selectedRowKeys, selectedRows) => {
-        //selectedRowKeys--行的index，selectedRows--行的订单信息
-        // console.log('1:',selectedRowKeys, '2:',selectedRows);
-        this.setState({
-          selectedItem: selectedRows,
-          selectedIndex: selectedRowKeys
-        });
-      }
-    };
+      // 城市列表数据
+      const cityData = [{
+          value: 0,
+          label: "北京"
+        },
+        {
+          value: 1,
+          label: "广州"
+        },
+        {
+          value: 2,
+          label: "上海"
+        },
+        {
+          value: 3,
+          label: "郑州"
+        }
+      ];
+      // 订单状态信息
+      const orderStatus = [{
+          value: 0,
+          status: "全部"
+        },
+        {
+          value: 1,
+          status: "正在进行"
+        },
+        {
+          value: 2,
+          status: "结束"
+        }
+      ];
+      // table列，信息
+      const columns = [{
+          title: "订单编号",
+          dataIndex: "order_sn",
+          key: "order_sn"
+        },
+        {
+          title: "车辆编号",
+          dataIndex: "bike_sn",
+          key: "bike_sn"
+        },
+        {
+          title: "用户名",
+          dataIndex: "user_name",
+          key: "user_name"
+        },
+        {
+          title: "手机号",
+          dataIndex: "mobile",
+          key: "mobile"
+        },
+        {
+          title: "里程",
+          dataIndex: "distance",
+          key: "distance"
+        },
+        {
+          title: "行驶时长",
+          dataIndex: "total_time",
+          key: "total_time"
+        },
+        {
+          title: "状态",
+          dataIndex: "status",
+          key: "status"
+        },
+        {
+          title: "开始时间",
+          dataIndex: "start_time",
+          key: "start_time"
+        },
+        {
+          title: "结束时间",
+          dataIndex: "end_time",
+          key: "end_time"
+        },
+        {
+          title: "订单金额",
+          dataIndex: "total_fee",
+          key: "total_fee"
+        },
+        {
+          title: "实付金额",
+          dataIndex: "user_pay",
+          key: "user_pay"
+        }
+      ];
+      // 表单元素的双向数据绑定
+      const {
+        getFieldDecorator
+      } = this.props.form;
+      //分页器
+      const pagination = {
+        total: this.state.total,
+        size: this.state.size,
+        onChange: index => {
+          this.setState({
+            pn: index
+          });
+          this.getOrder();
+        }
+      };
+      //操作每行的table数据
+      const rowSelection = {
+        type: "radio",
+        onChange: (selectedRowKeys, selectedRows) => {
+          //selectedRowKeys--行的index，selectedRows--行的订单信息
+          // console.log('1:',selectedRowKeys, '2:',selectedRows);
+          this.setState({
+            selectedItem: selectedRows,
+            selectedIndex: selectedRowKeys
+          });
+        }
+      };
     return (
       <div>
         <Form layout="inline">
